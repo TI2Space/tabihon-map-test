@@ -2812,17 +2812,29 @@
   <!-- ▼ スタイル定義 -->
   <style type="text/css"><![CDATA[
     /* -----------------------------------
-       本箱アイコン：ホバーで拡大（その場で）
+     本箱アイコン：ホバーで拡大（その場で）
+     ＋ 建物も一緒に明るく
     ----------------------------------- */
+
+    /* 本箱の基本 */
     g[data-name="本箱アイコン"] {
       transition: transform 0.3s ease-in-out;
       transform-box: fill-box;
       transform-origin: center center;
     }
 
-    g[id^="_"]:hover g[data-name="本箱アイコン"],
-    g[data-name="建物アイコン"]:hover ~ g[data-name="本箱アイコン"] {
+    /* 建物の基本：少し暗く */
+    g[data-name="建物アイコン"] {
+      filter: brightness(0.7);
+      transition: filter 0.3s ease-in-out;
+    }
+
+    /* スポット全体にホバー中（建物or本箱）→ 本箱拡大＆建物明るく */
+    g[id^="_"]:hover g[data-name="本箱アイコン"] {
       transform: scale(1.5);
+    }
+    g[id^="_"]:hover g[data-name="建物アイコン"] {
+      filter: brightness(1.2);
     }
 
     /* -----------------------------------
